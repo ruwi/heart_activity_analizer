@@ -1,0 +1,77 @@
+This project contains a few scripts in python to analyzing heart activity data
+files. Each script can be used alone or it can be imported as a module.
+
+INPUT FILE FORMAT:
+    The file should be built up with the three columns:
+     - first column contains the total (accumulated) time of the recording (in
+       minutes)
+     - second column contains the RR interval (in milliseconds)
+     - third column contains the annotation flag - 0 is for valid record and 1
+       represents the invalid record 
+
+FILES:
+    validator.py
+        Filtrate data, count number of lines of valid or invalid data.
+    analyzer.py
+        Calculate average, minimum, maximum, standard deviation of valid data
+        stored in second column.
+    plotter.py
+        Plot 
+        
+COMMON OPTIONS:
+    -f <file-name>, --file <file-name>
+        Set input file. Default is standard input.
+    -o <file-name>, --out <file-name>
+        Set output file. Default is standard output.
+    -h, --help
+        Display help and exit.
+    -v, --valid
+        Choose valid data only. Default all data.
+    -i, --invalid
+        Choose invalid data only. Default all data.
+
+OTHER OPTIONS:
+    validator.py:
+        -l, --lines
+            Display number of lines of given data. Options -i, -v can change
+            range of data which will be counted.
+    analyzer.py
+        --mean, --average
+            Display average of second column.
+        --min
+            Display minimal value of second column.
+        --max
+            Display minimal value of second column.
+        --std, --standard-deviation
+            Display standard deviation of second column
+        --all
+            Display all information 
+        -p, --pprint
+            Display information in readable form with descriptions.
+        --raw
+            Display raw value. This option can't be used with option --all.
+    plotter.py
+        -T <delta-time>, --delta-time <delta-time>
+            Set considering time interval to <delta-time> in minutes. 
+        -n <n>
+            Set which number of interval should be plotted. This option can't be
+            used with options --min, --max, --mean, --average, --std,
+            --standard-deviation, --histogram.
+        --histogram
+            Plot histogram of given range of data from second column.
+        --bins
+            Set number of equal-width bins in given interval.
+        --min
+            Plot minimal values for each interval <delta-time>
+        --max
+            Plot maximal values for each interval <delta-time>
+        --mean, --average
+            Plot average values for each interval <delta-time>
+        --std, --standard-deviation
+            Plot standard deviation values for each interval <delta-time>
+
+
+    
+
+         
+
