@@ -2,7 +2,7 @@ import argparse
 
 class BaseParser(argparse.ArgumentParser):
     """
-    It's ArgumentParser some options:
+    It's ArgumentParser with some options:
 
     COMMON OPTIONS:
         -f <file-name>, --file <file-name>
@@ -11,10 +11,9 @@ class BaseParser(argparse.ArgumentParser):
             Set output file. Default is standard output.
         -h, --help
             Display help and exit.
-        -v, --valid
-            Choose valid data only. Default all data.
-        -i, --invalid
-            Choose invalid data only. Default all data.
+        --filter <valid | invalid | all>
+            Filtrate data before other operations.
+            Default value is 'all'
 
     Some arguments are required:
         - description -- A description of what the program does
@@ -25,7 +24,19 @@ class BaseParser(argparse.ArgumentParser):
             raise ValueError('Description is required')
         if epilog == None:
             raise ValueError('Epilog is required')
-        super(self, BaseParser).__init__(description=description,
+        super(BaseParser, self).__init__(description=description,
             epilog=epilog)
-#TODO: add arguments
-        
+        self.add_argument('-f', '--file',
+            dest='input_file',
+            type=argparse.FileType('r'),
+            default=sys.stdin,
+            help="Set input file. Default is standard input.")
+        self.add_argument('-o', '--out',
+            dest='output_file',
+            type=argparse.FileType('w'),
+            default=sys.stdout,
+            help="Set output file. Default is standard output.")
+        self.add_argument('--filter',
+            dest='filter_',
+            choose=['valid', 'invalid', 'all']
+            default='all')
