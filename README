@@ -25,10 +25,9 @@ COMMON OPTIONS:
         Set output file. Default is standard output.
     -h, --help
         Display help and exit.
-    -v, --valid
-        Choose valid data only. Default all data.
-    -i, --invalid
-        Choose invalid data only. Default all data.
+    --filter <valid | invalid | all>
+        Filtrate data before other operations.
+        Default value is 'all'
 
 OTHER OPTIONS:
     validator.py:
