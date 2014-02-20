@@ -1,3 +1,4 @@
+import sys
 import argparse
 
 class BaseParser(argparse.ArgumentParser):
@@ -38,5 +39,5 @@ class BaseParser(argparse.ArgumentParser):
             help="Set output file. Default is standard output.")
         self.add_argument('--filter',
             dest='filter_',
-            choose=['valid', 'invalid', 'all']
+            choices=['valid', 'invalid', 'all'],
             default='all')
