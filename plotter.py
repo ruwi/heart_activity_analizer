@@ -38,18 +38,16 @@ if __name__ == '__main__':
             default=1.0,
             type=float,
             metavar="<segment-time>",
-            help="Segment time"
-                "All data are divided into pieces with <segment-time>"
-                "Functions like mean, min, max will return value from this"
+            help="Segment time "
+                "All data are divided into pieces with <segment-time> "
+                "Functions like mean, min, max will return value from this "
                 "intervals and then data will be plotted")
     parser.add_argument('-n', '--interval-number',
             dest='n',
             action='store',
             type=float,
             default=1,
-            help= "Set which number of interval should be plotted. This option"
-                "can't be used with options --min, --max, --mean, --average,"
-                "--std, --standard-deviation, --histogram.")
+            help= "Set which number of interval should be plotted.")
     parser.add_argument('--mean', '--average',
             dest='mean',
             action='store_true',
@@ -76,8 +74,8 @@ if __name__ == '__main__':
     parser.add_argument('--histogram',
             dest='histogram',
             action='store_true',
-            help="Plot histogram of data. Minimal, maximal and average values"
-                "will be mark on the plot. Options like --min, --max, --std,"
+            help="Plot histogram of data. Minimal, maximal and average values "
+                "will be mark on the plot. Options like --min, --max, "
                 " --all, have no influence on the resulting plot")
     parser.add_argument('--bins',
             dest='bins',
