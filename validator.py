@@ -82,7 +82,8 @@ if __name__ == '__main__':
     else:
         raise Exception("Wrong argument parsing")
     if args.line:
-        args.output_file.write('%d\n' % len(data))
+        args.output_file.write('Lines of %s data: %d\n' % (args.filter_,
+            len(data)))
     else:
         np.savetxt(args.output_file, data)
 
