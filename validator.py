@@ -42,17 +42,17 @@ def get_data_from_file(file_path):
 
 def get_valid_data(data):
     """
-    Return only valid data. Value of third column is equal to 1 if data
+    Return only valid data. Value of third column is equal to 0 if data
     record is valid.
     """
-    return data[np.where(data[:,2]==1)]
+    return data[np.where(data[:,2]==0)]
 
 def get_invalid_data(data):
     """
-    Return only invalid data. Value of third column is equal to 0 if data
+    Return only invalid data. Value of third column is equal to 1 if data
     record is invalid.
     """
-    return data[np.where(data[:,2]==0)]
+    return data[np.where(data[:,2]==1)]
 
 def get_number_of_records(data):
     """
