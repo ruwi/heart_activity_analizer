@@ -1,0 +1,54 @@
+﻿In this directory you will find the `RR.rea` file. This file
+stores a 24-hour long recording of a heart activity extracted from
+an ECG signal of a healthy adult person. 
+
+The activity of a heart is thus represented by a fairly long (over 100 000 lines) 
+time series -- namely the RR time series (http://geekymedics.com/2011/03/05/understanding-an-ecg/).
+
+The file is build up with the three columns:
+ - first column contains the total (accumulated) time of the recording (in minutes)
+ - second column contains the RR interval (in milliseconds)
+ - third column contains the annotation flag - 0 is for valid record and 1 represents the invalid record 
+
+EXAMINATION PROBLEMS TO BE SOLVED
+===================================
+A) Implement the Python script that will load that `RR.rea` file and will find out
+   the line numbers of invalid records (i.e. the lines with `1` in the third column
+
+B) Calculate the maximum, minimum, average and standard deviation of the VALID (i.e. filter out
+   the lines with `1` in the third column) data stored  in the second column
+
+C) Plot (using the `matplotlib` library) a 5 and 15 minutes long time window of a whole time series
+   (i.e. plot the data from the second column, but not the whole series, but select the two subsections of it:
+   the one that will store the 5-minutes long recording segment and the other that will store the 15-minutes long
+   recording). Remember to annotate the plot with X- and Y- axis labels, title, etc.
+
+D) Plot (using the `matplotlib` library) the histogram of a whole RR time series (i.e. the second column). Annotate
+   on that plot the maximum, the minimum and the average (provide the certain values as an annotation text).
+
+E) Plot the values of the consecutive 15-minutes long segments of the signal as a function of
+   the segment number.
+
+   I.e - find out the n-consecutive 15-minutes segments, according to the following scheme:
+   
+   signal start  							  signal end
+   0                                                                     1565.377033
+   --------------------------------------------------------------------------------
+   <--- 1: 15 min ---> <---2: 15 min ---> <---4: 15 min -->] ... <---n: 15 min --->
+         avg(1)             avg(2)             avg(3)        ...       avg(n)
+
+   then, calculate the average value of each segment and create a plot, that will visualize
+   these averages
+	 
+   
+VERSION CONTROL
+========================
+
+Please note, that I'm requiring the project to be implemented with the Git (http://git-scm.com/) 
+as a version controll system and the projects should be sent to the Github (https://github.com/)
+up to the deadline date.
+
+I want to see, that you understand the basic git commands and terminology: (push, pull, clone, commit,
+local and remote repositories, branches, etc.)
+
+
