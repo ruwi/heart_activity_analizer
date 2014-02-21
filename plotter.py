@@ -25,23 +25,24 @@ if __name__ == '__main__':
     parser = base_parser.BaseParser(
             description="",
             epilog="")
-    parser.add_argument('-T', '--delta-time',
+    parser.add_argument('-T', '--delta-time', '--interval',
             dest='T',
             action='store',
             default=-1.0,
             type=float,
             metavar="<delta-time>",
             help="Set considering time interval to <delta-time> in minutes.")
-    parser.add_argument('-s', '--smooth-time',
+    parser.add_argument('-s', '--segment-time',
             dest='st',
             action='store',
             default=1.0,
             type=float,
-            metavar="<smooth-time>",
-            help="All data are divided into pieces with <smooth-time>"
+            metavar="<segment-time>",
+            help="Segment time"
+                "All data are divided into pieces with <segment-time>"
                 "Functions like mean, min, max will return value from this"
                 "intervals and then data will be plotted")
-    parser.add_argument('-n',
+    parser.add_argument('-n', '--interval-number',
             dest='n',
             action='store',
             type=float,
@@ -103,7 +104,9 @@ if __name__ == '__main__':
         print "No data, try change options"
         sys.exit(1)
     if args.histogram:
-        ax.set_title('Histogram of RR\n'
+        ax.set_title('Histogram of %s RR data ' % args.filter_ +
+                '- file %s ' % args.input_file.name +
+                '- bins %d\n' % args.bins +
                 'segment time: %.2f min; segment number: %d' % (args.T, args.n))
         ax.set_xlabel('RR interval in milliseconds')
         ax.set_ylabel('Number of results')
@@ -118,8 +121,26 @@ if __name__ == '__main__':
                 xy=(xx,yy), xytext=(xx, yy*1.1),
                 arrowprops=dict(arrowstyle='->'))
         ax.set_ylim(0, yy*1.3)
+        yy2 = np.min(y)
+        xx2 = x[np.where(y==yy2)][0]
+        ax.annotate('minimal value of histogram: %d' % yy2,
+                xy=(xx2,yy2), xytext=(xx2, yy2 + yy*0.1),
+                arrowprops=dict(arrowstyle='->'))
+        yy3 = np.mean(y)
+        xx3 = x[0]
+        ax.annotate('average value of histogram: %.02f' % yy3,
+                xy=(xx3,yy3), xytext=(xx3, yy3 + yy*0.1),
+                arrowprops=dict(arrowstyle='->'))
+        ax.plot(x, yy3*np.ones_like(x), 'g--')
+
     else:
-        ax.set_title('RR')
+        title =('%s RR - file: %s; '
+                % (args.filter_, args.input_file.name))
+        if args.min or args.max or args.mean or args.all:
+            title += 'segment time: %.02f min' % args.st
+        title += ('\nploted interval: %.2f min; interval number: %d'
+                % (args.T, args.n))
+        ax.set_title(title)
         ax.set_xlabel('Time in minutes')
         ax.set_ylabel('RR interval in milliseconds')
         if args.data or args.all:
