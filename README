@@ -25,14 +25,14 @@ COMMON OPTIONS:
         Set output file. Default is standard output.
     -h, --help
         Display help and exit.
-    --filter <valid | invalid | all>
+    --filter (valid | invalid | all)
         Filtrate data before other operations.
         Default value is 'all'
 
 OTHER OPTIONS:
     validator.py:
         -l, --lines
-            Display number of lines of given data. Options -i, -v can change
+            Display number of lines of given data. Option --filter can change
             range of data which will be counted.
     analyzer.py
         --mean, --average
@@ -40,15 +40,14 @@ OTHER OPTIONS:
         --min
             Display minimal value of second column.
         --max
-            Display minimal value of second column.
+            Display maximal value of second column.
         --std, --standard-deviation
-            Display standard deviation of second column
+            Display standard deviation of second column.
         --all
-            Display all information 
+            Display all information.
         -p, --pprint
-            Display information in readable form with descriptions.
-        --raw
-            Display raw value. This option can't be used with option --all.
+            Display information in readable form with descriptions.  Without
+            this option only numerical values will be given in separate lines.
     plotter.py
         -T <delta-time>, --delta-time <delta-time>
             Set considering time interval to <delta-time> in minutes. 
